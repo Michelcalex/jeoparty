@@ -1,8 +1,7 @@
+
+
 function init() {
     getQuestion();
-    
-    
-
 
 }
 
@@ -17,7 +16,7 @@ function getQuestion (){
         let response = JSON.parse(request.responseText);
         for(let i =0; i < response.length; i++) {
             let question = response[i];
-            showQuestion(question);
+            showGameElements(question);
         }
     });
 
@@ -25,16 +24,20 @@ function getQuestion (){
     console.log("Sent");
 }
 
-function showQuestion(theQuestion) {
 
+function showGameElements(elements) {    
     //Making question show with <h2>
-    let questionLabel = document.createElement('h2');
-    questionLabel.textContent = theQuestion.question;
-    console.log (theQuestion.question);
+    let questionLabel = document.querySelector('#question');
+    questionLabel.textContent = ('Question: ' + elements.question);
+    console.log (elements.question);
+  
 
-    let body = document.querySelector('body');
-    body.appendChild(questionLabel);
+    let category = document.querySelector('#category');
+    category.textContent = ('Category: ' + elements.category.title);
 
+
+    let points = document.querySelector('#points');
+    points.textContent = ('Points: ' + elements.value);
 
 }
 
