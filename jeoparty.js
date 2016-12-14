@@ -21,24 +21,34 @@ function getQuestion (){
     });
 
     request.send();
-    console.log("Sent");
 }
 
 
 function showGameElements(elements) {    
-    //Making question show with <h2>
+    //Show question 
     let questionLabel = document.querySelector('#question');
     questionLabel.textContent = ('Question: ' + elements.question);
-    console.log (elements.question);
+   // console.log (elements.question);
   
-
+   //Show category
     let category = document.querySelector('#category');
     category.textContent = ('Category: ' + elements.category.title);
 
-
+    //Show points
     let points = document.querySelector('#points');
     points.textContent = ('Points: ' + elements.value);
 
+    // let input = document.querySelector('input');
+    // if (input.value === elements.answer) {
+    //     elements.points + 1;
+    // }
+    // console.log(elements.points);
+
+    let button = document.querySelector('button');
+    button.textContent = "Submit";
+
+    let userPoints = document.querySelector('h3');
+    userPoints.textContent = ("User Points: " + 0);
 }
 
 
