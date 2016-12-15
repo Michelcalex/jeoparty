@@ -1,8 +1,12 @@
+let score = 0;
+let answer = null;
+let pointValue = null;
 
 
 function init() {
     getQuestion();
-
+    let button = document.querySelector('button');
+    button.addEventListener('click', checkAnswer);
 }
 
 
@@ -17,6 +21,9 @@ function getQuestion (){
         for(let i =0; i < response.length; i++) {
             let question = response[i];
             showGameElements(question);
+            answer = question.answer;
+            console.log(answer);
+            pointValue = question.value;
         }
     });
 
@@ -35,23 +42,41 @@ function showGameElements(elements) {
     category.textContent = ('Category: ' + elements.category.title);
 
     //Show points
-    let points = document.querySelector('#points');
+    points = document.querySelector('#points');
     points.textContent = ('Points: ' + elements.value);
 
-    // let input = document.querySelector('input');
-    // if (input.value === elements.answer) {
-    //     elements.points + 1;
-    // }
-    // console.log(elements.points);
-
-    let button = document.querySelector('button');
-    button.textContent = "Submit";
+    //Show button
+    button = document.querySelector('button');
+    button.textContent = "Guess";
 
     let userPoints = document.querySelector('h3');
-    userPoints.textContent = ("User Points: " + 0);
+    userPoints.textContent = ("User Points: " + score);
+
+   
 }
 
 
 
+
+
 window.addEventListener('load', init);
+
+
+
+
+
+//FUNCTION CHECK ANSWER AND GET ANOTHER QUESTION
+function checkAnswer () {
+    let input = document.querySelector('#input');
+    if(input.value === answer) {
+        //console.log(score);
+        score = score + pointValue;
+       //console.log(score);
+    }
+    input.value = '';
+    getQuestion();
+}
+
+
+
 
